@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mamadou Mansour Diop — Fiche d'intervention</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #E7E1D2;
+    --paper-deep: #DAD3BF;
+    --card: #F1ECDE;
+    --ink: #23271F;
+    --ink-soft: #4A4A3F;
+    --mono-grey: #6E6A5B;
+    --line: #B9AF95;
+    --green: #33684C;
+    --amber: #A66A17;
+    --rust: #A73B2C;
+    --focus: #1F4FD1;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+
+  /* paper grain */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:0.05;
+    background-image:
+      radial-gradient(circle at 20% 30%, #000 0.5px, transparent 0.6px),
+      radial-gradient(circle at 60% 70%, #000 0.5px, transparent 0.6px),
+      radial-gradient(circle at 80% 20%, #000 0.5px, transparent 0.6px);
+    background-size: 3px 3px, 4px 4px, 5px 5px;
+  }
+
+  a{color:inherit;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .display{font-family:'Oswald', sans-serif;}
+
+  ::selection{background:var(--rust); color:var(--card);}
+
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--focus);
+    outline-offset:3px;
+  }
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px; position:relative; z-index:1;}
+
+  /* ---------- NAV ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+    border-bottom:1.5px solid var(--ink);
+  }
+  .topbar-inner{
+    max-width:920px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    letter-spacing:0.04em;
+  }
+  .topbar-left{display:flex; align-items:center; gap:10px;}
+  .topbar-brand{font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.03em; font-size:15px;}
+  .status-dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--green);
+    display:inline-block;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1; box-shadow:0 0 0 0 rgba(51,104,76,0.4);}
+    50%{opacity:0.75; box-shadow:0 0 0 5px rgba(51,104,76,0);}
+  }
+  .topbar-right{color:var(--mono-grey);}
+  @media(max-width:600px){ .topbar-right{display:none;} }
+
+  /* ---------- PERFORATION DIVIDER ---------- */
+  .perf{
+    position:relative;
+    height:26px;
+    margin: 0;
+    background-image: radial-gradient(circle, var(--paper) 4.5px, transparent 5px);
+    background-size: 20px 20px;
+    background-position: center;
+    background-repeat: repeat-x;
+  }
+  .perf::before{
+    content:"";
+    position:absolute; left:0; right:0; top:50%;
+    border-top:1.5px dashed var(--ink-soft);
+    opacity:0.5;
+  }
+  .perf-label{
+    position:absolute; left:24px; top:50%; transform:translateY(-50%);
+    background:var(--paper);
+    padding:0 8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    color:var(--mono-grey);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:56px 0 40px;}
+  .eyebrow-row{
+    display:flex; flex-wrap:wrap; gap:8px 16px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--mono-grey);
+    margin-bottom:22px;
+    letter-spacing:0.03em;
+  }
+  .eyebrow-row span b{color:var(--ink); font-weight:600;}
+  .ticket-id{
+    border:1px solid var(--ink-soft);
+    padding:2px 8px;
+    border-radius:2px;
+  }
+
+  .hero h1{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:clamp(28px, 5vw, 42px);
+    line-height:1.15;
+    margin:0 0 8px;
+    letter-spacing:-0.01em;
+  }
+  .hero .problem-label{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    font-weight:500;
+    color:var(--rust);
+    letter-spacing:0.08em;
+    margin-bottom:10px;
+  }
+  .hero .lede{
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:60ch;
+    margin: 18px 0 32px;
+  }
+
+  .field-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    border:1.5px solid var(--ink);
+    background:var(--card);
+    margin-bottom:32px;
+  }
+  .field{
+    padding:14px 16px;
+    border-right:1.5px solid var(--ink);
+  }
+  .field:last-child{border-right:none;}
+  @media(max-width:640px){
+    .field-grid{grid-template-columns:1fr;}
+    .field{border-right:none; border-bottom:1.5px solid var(--ink);}
+    .field:last-child{border-bottom:none;}
+  }
+  .field-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    color:var(--mono-grey);
+    display:block; margin-bottom:4px;
+  }
+  .field-value{
+    font-family:'Oswald', sans-serif;
+    font-size:16px;
+    font-weight:500;
+  }
+  .field-value.avail{color:var(--green);}
+
+  .cta-row{display:flex; flex-wrap:wrap; gap:12px;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.02em;
+    text-decoration:none;
+    padding:12px 20px;
+    border:1.5px solid var(--ink);
+    border-radius:2px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .btn-solid{background:var(--ink); color:var(--paper);}
+  .btn-solid:hover{background:var(--rust); border-color:var(--rust); transform:translateY(-2px);}
+  .btn-outline:hover{background:var(--ink); color:var(--paper); transform:translateY(-2px);}
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{padding:44px 0;}
+  .sec-head{
+    display:flex; align-items:baseline; gap:14px;
+    margin-bottom:26px;
+  }
+  .sec-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--mono-grey);
+    border:1px solid var(--line);
+    padding:2px 7px;
+    border-radius:2px;
+  }
+  .sec-head h2{
+    font-family:'Oswald', sans-serif;
+    font-size:24px;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  /* reveal on scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- ABOUT ---------- */
+  .about-body{
+    font-size:16px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    max-width:66ch;
+  }
+  .about-body strong{color:var(--ink);}
+
+  /* ---------- SKILLS ---------- */
+  .skills-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+  }
+  @media(max-width:640px){ .skills-cols{grid-template-columns:1fr;} }
+  .skill-group-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    color:var(--mono-grey);
+    margin-bottom:14px;
+    padding-bottom:6px;
+    border-bottom:1px solid var(--line);
+  }
+  .skill-row{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px;
+    padding:8px 0;
+    font-size:14px;
+  }
+  .skill-name{flex:1;}
+  .gauge{
+    display:flex; gap:3px;
+  }
+  .gauge i{
+    width:14px; height:9px;
+    border:1.2px solid var(--ink);
+    background:transparent;
+    display:block;
+  }
+  .gauge i.on{background:var(--ink);}
+
+  /* ---------- EXPERIENCE ---------- */
+  .ticket{
+    position:relative;
+    background:var(--card);
+    border:1.5px solid var(--ink);
+    padding:22px 24px 24px;
+    margin-bottom:22px;
+    overflow:hidden;
+  }
+  .ticket::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0;
+    width:6px;
+    background:repeating-linear-gradient(45deg, var(--ink) 0 4px, transparent 4px 8px);
+    opacity:0.25;
+  }
+  .ticket-top{
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start;
+    gap:12px;
+    margin-bottom:6px;
+  }
+  .ticket-ref{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--mono-grey);
+    letter-spacing:0.05em;
+  }
+  .ticket-role{
+    font-family:'Oswald', sans-serif;
+    font-size:19px;
+    font-weight:600;
+    margin:2px 0 0;
+  }
+  .ticket-org{
+    font-size:14px;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  .ticket-org b{color:var(--ink);}
+  .ticket ul{
+    margin:0; padding-left:18px;
+    font-size:14.5px;
+    line-height:1.65;
+    color:var(--ink-soft);
+  }
+  .ticket li{margin-bottom:4px;}
+
+  .stamp{
+    position:absolute;
+    top:18px; right:20px;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:12.5px;
+    letter-spacing:0.12em;
+    padding:6px 12px;
+    border:3px double currentColor;
+    border-radius:4px;
+    transform: rotate(-9deg) scale(1.5);
+    opacity:0;
+    transition: transform 0.5s cubic-bezier(.2,1.6,.4,1), opacity 0.4s ease;
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+  .stamp.resolved{color:var(--green);}
+  .stamp.progress{color:var(--amber);}
+  .stamp.stamped{
+    opacity:0.85;
+    transform: rotate(-9deg) scale(1);
+  }
+  @media(max-width:520px){
+    .stamp{top:auto; bottom:16px; right:16px; font-size:11px; padding:4px 9px;}
+  }
+
+  /* ---------- FORMATION ---------- */
+  .edu-row{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    gap:18px;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .edu-row:last-child{border-bottom:none;}
+  .edu-year{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--mono-grey);
+    white-space:nowrap;
+  }
+  .edu-name{font-weight:600;}
+  .edu-school{color:var(--ink-soft); font-size:13.5px; display:block;}
+  .edu-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    padding:4px 8px;
+    border-radius:2px;
+    white-space:nowrap;
+  }
+  .edu-tag.done{color:var(--green); border:1px solid var(--green);}
+  .edu-tag.wip{color:var(--amber); border:1px solid var(--amber);}
+  @media(max-width:560px){
+    .edu-row{grid-template-columns:1fr; gap:4px;}
+  }
+
+  /* ---------- LANGUES + INTERESTS ---------- */
+  .split-two{
+    display:grid; grid-template-columns:1fr 1fr; gap:32px;
+  }
+  @media(max-width:640px){ .split-two{grid-template-columns:1fr;} }
+  .tag-list{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:6px 11px;
+    border:1px solid var(--ink-soft);
+    border-radius:2px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- FOOTER / CARBON COPY ---------- */
+  footer{
+    padding:40px 0 60px;
+  }
+  .copy-block{
+    border:1.5px dashed var(--ink-soft);
+    padding:26px 24px 22px;
+    position:relative;
+  }
+  .copy-tag{
+    position:absolute; top:-11px; left:20px;
+    background:var(--paper);
+    padding:0 8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    color:var(--mono-grey);
+  }
+  .copy-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:20px;
+    margin-bottom:22px;
+  }
+  @media(max-width:560px){ .copy-grid{grid-template-columns:1fr;} }
+  .copy-item-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px; letter-spacing:0.08em; color:var(--mono-grey);
+    display:block; margin-bottom:3px;
+  }
+  .copy-item-value{font-size:15px;}
+  .copy-item-value a{text-decoration:none; border-bottom:1px solid var(--line);}
+  .copy-item-value a:hover{border-color:var(--ink);}
+
+  .sign-row{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    flex-wrap:wrap; gap:16px;
+    border-top:1px solid var(--line);
+    padding-top:18px;
+  }
+  .signature{
+    font-family:'Caveat', cursive;
+    font-size:34px;
+    color:var(--ink);
+  }
+  .sign-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--mono-grey);
+    text-align:right;
+  }
+
+  .final-note{
+    text-align:center;
+    margin-top:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    color:var(--mono-grey);
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span class="topbar-brand">M.M.D — TECHNICIEN</span>
+    </div>
+    <div class="topbar-right">DOSSIER Nº 2026-0709 · STATUT : DISPONIBLE</div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow-row">
+      <span class="ticket-id">FICHE D'INTERVENTION — OUVERTE</span>
+      <span>PRIORITÉ : <b>ÉLEVÉE</b></span>
+      <span>SECTEUR : <b>Québec, QC</b></span>
+    </div>
+
+    <span class="problem-label">PROBLÈME SIGNALÉ :</span>
+    <h1>« Il nous faut quelqu'un de fiable, qui règle les pépins avant qu'ils deviennent des pannes. »</h1>
+    <p class="lede">C'est exactement le poste que j'occupe depuis cinq ans, entre support technique, service client et gestion commerciale. Voici mon dossier complet — diagnostic, interventions passées et disponibilités.</p>
+
+    <div class="field-grid">
+      <div class="field">
+        <span class="field-label">TECHNICIEN ASSIGNÉ</span>
+        <span class="field-value">Mamadou Mansour Diop</span>
+      </div>
+      <div class="field">
+        <span class="field-label">SPÉCIALITÉ</span>
+        <span class="field-value">Support IT · Service client</span>
+      </div>
+      <div class="field">
+        <span class="field-label">DISPONIBILITÉ</span>
+        <span class="field-value avail">Immédiate</span>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-solid" href="mailto:manspro667@gmail.com">✉ Écrire un courriel</a>
+      <a class="btn btn-outline" href="tel:+14185765429">📞 Appeler le technicien</a>
+      <a class="btn btn-outline" href="#historique">Voir le dossier complet ↓</a>
+    </div>
+  </section>
+
+  <div class="perf"><span class="perf-label">✂ DIAGNOSTIC CI-DESSOUS</span></div>
+
+  <section id="diagnostic">
+    <div class="sec-head">
+      <span class="sec-num mono">01</span>
+      <h2>Résumé du diagnostic</h2>
+    </div>
+    <p class="about-body reveal">
+      Étudiant en informatique <strong>rigoureux et polyvalent</strong>, je combine des compétences techniques en support informatique — dépannage, maintenance matérielle, installation de systèmes — avec une solide expérience en <strong>service à la clientèle et en gestion commerciale</strong>, bâtie sur cinq ans de postes en contact direct avec le public.
+    </p>
+    <p class="about-body reveal" style="margin-top:14px;">
+      Ce qu'on retient de moi sur le terrain : autonomie, sens de l'organisation, et une capacité à m'adapter rapidement — que ce soit devant un poste qui refuse de démarrer ou une file de clients un vendredi soir. Je poursuis actuellement mon DEP en informatique tout en continuant à développer mon expertise technique.
+    </p>
+  </section>
+
+  <div class="perf"><span class="perf-label">✂ SPÉCIFICATIONS TECHNIQUES</span></div>
+
+  <section id="competences">
+    <div class="sec-head">
+      <span class="sec-num mono">02</span>
+      <h2>Outils &amp; compétences</h2>
+    </div>
+
+    <div class="skills-cols">
+      <div>
+        <div class="skill-group-title reveal">INFORMATIQUE</div>
+        <div class="skill-row reveal"><span class="skill-name">Support technique &amp; dépannage</span><span class="gauge" data-level="4"></span></div>
+        <div class="skill-row reveal"><span class="skill-name">Maintenance matérielle (PC/laptop)</span><span class="gauge" data-level="4"></span></div>
+        <div class="skill-row reveal"><span class="skill-name">Installation OS &amp; logiciels</span><span class="gauge" data-level="4"></span></div>
+        <div class="skill-row reveal"><span class="skill-name">Réseaux (notions de base)</span><span class="gauge" data-level="2"></span></div>
+        <div class="skill-row reveal"><span class="skill-name">Programmation web (HTML/CSS)</span><span class="gauge" data-level="3"></span></div>
+      </div>
+      <div>
+        <div class="skill-group-title reveal">BUREAUTIQUE &amp; OUTILS</div>
+        <div class="skill-row reveal"><span class="skill-name">Word / Excel / PowerPoint</span><span class="gauge" data-level="5"></span></div>
+        <div class="skill-row reveal"><span class="skill-name">Microsoft 365 (suite complète)</span><span class="gauge" data-level="5"></span></div>
+        <div class="skill-row reveal"><span class="skill-name">Outlook &amp; Teams</span><span class="gauge" data-level="4"></span></div>
+        <div class="skill-row reveal"><span class="skill-name">Google Workspace</span><span class="gauge" data-level="3"></span></div>
+      </div>
+    </div>
+
+    <div style="height:28px;"></div>
+
+    <div class="skills-cols">
+      <div>
+        <div class="skill-group-title reveal">INTERPERSONNELLES</div>
+        <div class="tag-list reveal">
+          <span class="tag">Service client &amp; écoute active</span>
+          <span class="tag">Communication claire</span>
+          <span class="tag">Travail d'équipe</span>
+          <span class="tag">Résolution de problèmes</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title reveal">ORGANISATIONNELLES</div>
+        <div class="tag-list reveal">
+          <span class="tag">Gestion du temps</span>
+          <span class="tag">Autonomie</span>
+          <span class="tag">Rigueur &amp; souci du détail</span>
+          <span class="tag">Adaptation rapide</span>
+          <span class="tag">Respect des normes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perf"><span class="perf-label">✂ HISTORIQUE D'INTERVENTIONS</span></div>
+
+  <section id="historique">
+    <div class="sec-head">
+      <span class="sec-num mono">03</span>
+      <h2>Historique d'interventions</h2>
+    </div>
+
+    <article class="ticket reveal" data-stamp="resolved">
+      <div class="stamp resolved">RÉSOLU</div>
+      <div class="ticket-top">
+        <span class="ticket-ref mono">RÉF. INT-2026-GBA</span>
+      </div>
+      <h3 class="ticket-role">Assistant en service de garde</h3>
+      <div class="ticket-org"><b>Garderie Belles Augures</b> · 01/2026 – aujourd'hui</div>
+      <ul>
+        <li>Exécution rapide et efficace des tâches assignées</li>
+        <li>Réalisation des tâches confiées en suivant les procédures et instructions</li>
+        <li>Maintien de l'ordre et de la propreté dans l'espace de travail</li>
+        <li>Assurance de la sécurité et de l'épanouissement des enfants</li>
+        <li>Administration des premiers soins aux enfants en cas de besoin, en suivant les protocoles appropriés</li>
+      </ul>
+    </article>
+
+    <article class="ticket reveal" data-stamp="resolved">
+      <div class="stamp resolved">RÉSOLU</div>
+      <div class="ticket-top">
+        <span class="ticket-ref mono">RÉF. INT-2025-VAR</span>
+      </div>
+      <h3 class="ticket-role">Conseiller en commerce de détail</h3>
+      <div class="ticket-org"><b>Variétés</b> · 2025 – présent</div>
+      <ul>
+        <li>Réception, déballage, étiquetage et mise en rayon des marchandises</li>
+        <li>Gestion du réassort et rotation des stocks selon les dates de péremption</li>
+        <li>Priorisation du réapprovisionnement des articles à forte demande</li>
+        <li>Accueil, information et accompagnement de la clientèle</li>
+        <li>Application rigoureuse des normes d'hygiène, sécurité et salubrité</li>
+      </ul>
+    </article>
+
+    <article class="ticket reveal" data-stamp="resolved">
+      <div class="stamp resolved">RÉSOLU</div>
+      <div class="ticket-top">
+        <span class="ticket-ref mono">RÉF. INT-2024-ICM</span>
+      </div>
+      <h3 class="ticket-role">Trieur de colis</h3>
+      <div class="ticket-org"><b>Intelcom</b> · 2024 – 2025</div>
+      <ul>
+        <li>Préparation, étiquetage et stockage temporaire des colis dans les délais impartis</li>
+        <li>Priorisation des envois urgents et gestion des pics d'activité</li>
+        <li>Détection et signalement des anomalies (dommages, erreurs, retards)</li>
+        <li>Maintien d'un espace de travail organisé et conforme aux normes de sécurité</li>
+      </ul>
+    </article>
+
+    <article class="ticket reveal" data-stamp="resolved">
+      <div class="stamp resolved">RÉSOLU</div>
+      <div class="ticket-top">
+        <span class="ticket-ref mono">RÉF. INT-2024-PRG</span>
+      </div>
+      <h3 class="ticket-role">Caissier / Cuisinier</h3>
+      <div class="ticket-org"><b>Poulet Rouge</b> · 2024 – 2025</div>
+      <ul>
+        <li>Préparation et assemblage des repas dans le respect des standards de qualité</li>
+        <li>Accueil chaleureux des clients et prise de commande efficace en période achalandée</li>
+        <li>Maintien de la propreté de l'espace et application des normes MAPAQ</li>
+      </ul>
+    </article>
+
+    <article class="ticket reveal" data-stamp="resolved">
+      <div class="stamp resolved">RÉSOLU</div>
+      <div class="ticket-top">
+        <span class="ticket-ref mono">RÉF. INT-2023-HDP</span>
+      </div>
+      <h3 class="ticket-role">Caissier / Conseiller de vente</h3>
+      <div class="ticket-org"><b>Home Dépôt</b> · 2023 – 2024</div>
+      <ul>
+        <li>Accueil et conseil personnalisé sur les produits, services et promotions</li>
+        <li>Gestion rigoureuse des transactions en caisse sans erreur</li>
+        <li>Vente de produits financiers — objectifs régulièrement dépassés</li>
+        <li>Collaboration active avec les différents départements</li>
+      </ul>
+    </article>
+
+    <article class="ticket reveal" data-stamp="resolved">
+      <div class="stamp resolved">RÉSOLU</div>
+      <div class="ticket-top">
+        <span class="ticket-ref mono">RÉF. INT-2022-CTD</span>
+      </div>
+      <h3 class="ticket-role">Caissier / Vendeur</h3>
+      <div class="ticket-org"><b>Couche-Tard</b> · 2022 – 2023</div>
+      <ul>
+        <li>Service rapide et courtois en environnement à fort achalandage</li>
+        <li>Opération de caisse, gestion des transactions et du fonds de caisse</li>
+        <li>Soutien logistique à l'équipe lors de projets spéciaux</li>
+      </ul>
+    </article>
+
+    <article class="ticket reveal" data-stamp="resolved">
+      <div class="stamp resolved">RÉSOLU</div>
+      <div class="ticket-top">
+        <span class="ticket-ref mono">RÉF. INT-2021-UNK</span>
+      </div>
+      <h3 class="ticket-role">Préposé à l'entretien &amp; service</h3>
+      <div class="ticket-org"><b>Unick</b> · 2021 – 2022</div>
+      <ul>
+        <li>Application stricte des protocoles d'hygiène et de salubrité</li>
+        <li>Collaboration avec l'équipe pour optimiser les tâches quotidiennes</li>
+        <li>Contribution à l'amélioration de l'efficacité opérationnelle</li>
+      </ul>
+    </article>
+  </section>
+
+  <div class="perf"><span class="perf-label">✂ FORMATION &amp; CERTIFICATIONS</span></div>
+
+  <section id="formation">
+    <div class="sec-head">
+      <span class="sec-num mono">04</span>
+      <h2>Registre de formation</h2>
+    </div>
+
+    <div class="reveal">
+      <div class="edu-row">
+        <span class="edu-year mono">2023 – présent</span>
+        <span>
+          <span class="edu-name">DEP en Informatique</span>
+          <span class="edu-school">CFP Marie-Rollet, Québec</span>
+        </span>
+        <span class="edu-tag wip">EN COURS</span>
+      </div>
+      <div class="edu-row">
+        <span class="edu-year mono">2021 – 2023</span>
+        <span>
+          <span class="edu-name">DEC – Techniques de l'informatique</span>
+          <span class="edu-school">Cégep Garneau, Québec</span>
+        </span>
+        <span class="edu-tag done">COMPLÉTÉ</span>
+      </div>
+      <div class="edu-row">
+        <span class="edu-year mono">2021</span>
+        <span>
+          <span class="edu-name">DELF B2 — Langue française</span>
+          <span class="edu-school">France Éducation Internationale</span>
+        </span>
+        <span class="edu-tag done">COMPLÉTÉ</span>
+      </div>
+      <div class="edu-row">
+        <span class="edu-year mono">2021</span>
+        <span>
+          <span class="edu-name">Diplôme de bachelier — Sciences sociales et humaines</span>
+          <span class="edu-school">Faculté des Lettres et Sciences Sociales</span>
+        </span>
+        <span class="edu-tag done">COMPLÉTÉ</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="perf"><span class="perf-label">✂ LANGUES &amp; CENTRES D'INTÉRÊT</span></div>
+
+  <section id="langues">
+    <div class="sec-head">
+      <span class="sec-num mono">05</span>
+      <h2>Langues &amp; intérêts</h2>
+    </div>
+
+    <div class="split-two">
+      <div>
+        <div class="skill-group-title reveal">LANGUES</div>
+        <div class="skill-row reveal"><span class="skill-name">Français — Courant (C1)</span><span class="gauge" data-level="5"></span></div>
+        <div class="skill-row reveal"><span class="skill-name">Anglais — Intermédiaire (B1)</span><span class="gauge" data-level="3"></span></div>
+        <div class="skill-row reveal"><span class="skill-name">Wolof — Langue maternelle</span><span class="gauge" data-level="5"></span></div>
+      </div>
+      <div>
+        <div class="skill-group-title reveal">CENTRES D'INTÉRÊT</div>
+        <div class="tag-list reveal">
+          <span class="tag">Nouvelles technologies</span>
+          <span class="tag">Basketball</span>
+          <span class="tag">Programmation web</span>
+          <span class="tag">Jeux vidéo</span>
+          <span class="tag">Découverte culturelle</span>
+          <span class="tag">Voyages</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="perf"><span class="perf-label">✂ COPIE CLIENT — À CONSERVER</span></div>
+
+<footer>
+  <div class="wrap">
+    <div class="copy-block reveal">
+      <span class="copy-tag">COPIE CLIENT</span>
+      <div class="copy-grid">
+        <div>
+          <span class="copy-item-label">COURRIEL</span>
+          <span class="copy-item-value"><a href="mailto:manspro667@gmail.com">manspro667@gmail.com</a></span>
+        </div>
+        <div>
+          <span class="copy-item-label">TÉLÉPHONE</span>
+          <span class="copy-item-value"><a href="tel:+14185765429">+1 (418) 576-5429</a></span>
+        </div>
+        <div>
+          <span class="copy-item-label">LOCALISATION</span>
+          <span class="copy-item-value">Québec, QC G1H 6L5</span>
+        </div>
+        <div>
+          <span class="copy-item-label">STATUT DU DOSSIER</span>
+          <span class="copy-item-value" style="color:var(--green); font-weight:600;">Disponible immédiatement</span>
+        </div>
+      </div>
+      <div class="sign-row">
+        <span class="signature">Mamadou M. Diop</span>
+        <span class="sign-meta">SIGNÉ LE 09/07/2026<br>TECHNICIEN ASSIGNÉ AU DOSSIER</span>
+      </div>
+    </div>
+    <div class="final-note">MERCI DE VOTRE CONFIANCE — DOSSIER CONSULTABLE EN TOUT TEMPS</div>
+  </div>
+</footer>
+
+<script>
+  // gauges
+  document.querySelectorAll('.gauge').forEach(function(g){
+    var level = parseInt(g.getAttribute('data-level'), 10) || 0;
+    for(var i=1;i<=5;i++){
+      var seg = document.createElement('i');
+      if(i<=level) seg.classList.add('on');
+      g.appendChild(seg);
+    }
+  });
+
+  // reveal + stamp on scroll
+  var revealEls = document.querySelectorAll('.reveal');
+  var stampEls = document.querySelectorAll('.ticket');
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        var stamp = entry.target.querySelector('.stamp');
+        if(stamp) stamp.classList.add('stamped');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.2});
+
+  revealEls.forEach(function(el){ io.observe(el); });
+  stampEls.forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>
